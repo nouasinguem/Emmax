@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="css/menu.css">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service.js').then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          }).catch((error) => {
+            console.log('Service Worker registration failed:', error);
+          });
+        }
+      </script>
+      
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Booking System</h1>
+    </header>
+    <nav>
+        <ul id="menu">
+
+            <% routes.forEach(routes => { %>
+                <li><a href="<%= routes.url %>"><%= routes.name %></a></li>
+              <% }); %>
+              
+        </ul>
+    </nav>
+    <section>
+        <p>Welcome to our online booking system. Navigate to the booking page to reserve your spot, or contact us for more information.</p>
+        <img src="image/welcome_image.jpg" alt="Welcome Image">
+
+        <audio autoplay loop hidden>
+          <source src="/audio/hi.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+    </section>
+</body>
+</html>

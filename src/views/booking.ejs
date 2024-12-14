@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/menu.css">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service.js').then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          }).catch((error) => {
+            console.log('Service Worker registration failed:', error);
+          });
+        }
+      </script>
+      
+</head>
+<body>
+    <nav>
+        <ul id="menu">
+            <% routes.forEach(routes => { %>
+                <li><a href="<%= routes.url %>"><%= routes.name %></a></li>
+              <% }); %>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Book Your Experience</h1>
+    </header>
+    
+    <form id = "form" action="/booking" method="POST">
+        <label for="date">Select a date:</label>
+        <input type="date" id="day" name="day" required>
+        <label for="email">Mail:</label>
+        <input type="email" id="email" name="email" placeholder="Enter an e-mail" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+
+    <audio autoplay loop hidden>
+      <source src="/audio/hi.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('day').setAttribute('min', today); // Allows users to book only from today's date
+
+        document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const data = {};
+
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        // Send the data as JSON
+        fetch('/booking',  {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', // Ensure the content type is JSON
+          },
+          body: JSON.stringify(data) // Ensure you're stringifying the data object
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))  // Log response for debugging
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+
+    </script>
+</body>
+</html>

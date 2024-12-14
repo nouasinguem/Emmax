@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Monitoring</title>
+    <link rel="stylesheet" href="css/staff.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <script>
+        // Fetch data from the server and populate the table
+        fetch('/booking')
+            .then(res => res.json())
+            .then(data => {
+                const tableBody = document.querySelector('bookingbody tbody');
+                data.forEach(booking => {
+                    // Use the date string directly from the JSON
+                    const row = `
+                        <tr>
+                            <td>${booking.date}</td>
+                            <td>${booking.email}</td>
+                            <td>${booking.name}</td>
+                            <td>${booking.attraction}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            })
+            .catch(err => console.error('Error fetching booking:', err));
+    </script>
+</head>
+<body>
+    <nav>
+        <ul id="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="booking.html">Bookings</a></li>
+            <li><a href="staff.html">Staff</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Staff Monitoring - Bookings</h1>
+    </header>
+    
+    <section>
+        <table border="1" id = 'booking'>
+            <tr>
+                <th>Date</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Attraction</th>
+            </tr>
+
+            <tbody id="bookingbody">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </section>
+</body>
+</html>

@@ -1,0 +1,48 @@
+body {
+    background-image: url("../image/background1.webp");
+    background-repeat: repeat;
+    text-align: center;
+}
+
+header {
+    background-image: url("../image/christmas.jpg");
+    padding: 20px;
+}
+
+h1 {
+    color: bisque;
+    font-size: 2.5em;
+    margin-top: 10px;
+}
+
+p{
+    font-family: Arial, sans-serif;
+}
+img {
+    width: 400px;
+    margin-top: 20px;
+    border: 3px solid black;
+    border-radius: 15px;
+}
+
+@media (max-width: 700px) {
+    body {
+        background-size: contain; 
+    }
+
+    header {
+        padding: 15px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    h1 {
+        font-size: 1.8em; 
+    }
+
+    img {
+        width: 80%; 
+        margin-top: 10px;
+        border: 2px solid black; 
+    }
+}

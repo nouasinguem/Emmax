@@ -1,0 +1,44 @@
+body {
+    background-image: url("../image/background1.webp");
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+nav{
+    position: fixed;
+    top: 0;
+    width: 50%;
+}
+header {
+    text-align: center;
+    color: bisque;
+}
+
+table{
+    background-image: url('../image/formbackground.jpg');
+}
+
+@media (max-width: 700px) {
+    body {
+        background-size: contain;
+        flex-direction: column; 
+    }
+
+    nav {
+        position: relative;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    header {
+        width: 80%;
+    }
+    
+    table {
+        width: 80%;
+    }
+}
