@@ -38,6 +38,19 @@
         .catch(err => console.error('Error fetching bookings:', err));
 });
 
+        const audio = document.getElementById("background-music");
+        const muteButton = document.getElementById("mute-button");
+
+        muteButton.addEventListener("click", () => {
+          if (audio.muted) {
+            audio.muted = false; // Unmute the audio
+            muteButton.textContent = "Mute"; // Change button text
+          } else {
+            audio.muted = true; // Mute the audio
+            muteButton.textContent = "Unmute"; // Change button text
+          }
+        });
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service.js').then((registration) => {
                 console.log('Service Worker registered with scope:', registration.scope);
@@ -77,7 +90,7 @@
         </table>
     </section>
     
-    <audio autoplay loop hidden>
+    <audio id = "background-music" autoplay loop hidden>
         <source src="/audio/hi.mp3" type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
