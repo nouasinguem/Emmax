@@ -1,16 +1,15 @@
 {
   "name": "example",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon ./src/app.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "-": "^0.0.1",
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
     "dotnet": "^1.1.4",
@@ -20,5 +19,8 @@
     "mongoose": "^8.8.2",
     "nodemon": "^3.1.7",
     "save": "^2.9.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
   }
 }
